@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abarin</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+    {
+      "imports": {
+        "@codemirror/state": "https://esm.sh/@codemirror/state@6",
+        "@codemirror/view": "https://esm.sh/@codemirror/view@6",
+        "@codemirror/commands": "https://esm.sh/@codemirror/commands@6",
+        "@codemirror/language": "https://esm.sh/@codemirror/language@6",
+        "@codemirror/lang-python": "https://esm.sh/@codemirror/lang-python@6",
+        "@codemirror/lang-javascript": "https://esm.sh/@codemirror/lang-javascript@6",
+        "@codemirror/lang-cpp": "https://esm.sh/@codemirror/lang-cpp@6",
+        "@codemirror/lang-java": "https://esm.sh/@codemirror/lang-java@6",
+        "@codemirror/lang-rust": "https://esm.sh/@codemirror/lang-rust@6",
+        "@lezer/highlight": "https://esm.sh/@lezer/highlight"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div id="boot-screen" class="active">
+        <div class="boot-content">
+            <h1 class="glow-text">Abarin</h1>
+            <p class="blink">Press any key to begin...</p>
+        </div>
+    </div>
+
+    <!-- The workspace manages layout direction -->
+    <div id="workspace" class="hidden layout-horizontal">
+        <div class="header">
+            <div class="brand">Abarin</div>
+            <div class="toolbar">
+                <select id="lang-selector">
+                    <option value="python" data-version="3.10.0">Python 3</option>
+                    <option value="javascript" data-version="18.15.0">JavaScript (Node)</option>
+                    <option value="cpp" data-version="10.2.0">C++ (GCC)</option>
+                    <option value="java" data-version="15.0.2">Java</option>
+                    <option value="rust" data-version="1.68.2">Rust</option>
+                </select>
+                <div class="action-buttons">
+                    <button id="btn-run" title="Run Code"><span class="material-symbols-outlined">play_arrow</span> Run</button>
+                    <button id="btn-copy" title="Copy to Clipboard"><span class="material-symbols-outlined">content_copy</span> Copy</button>
+                    <button id="btn-save" title="Save File"><span class="material-symbols-outlined">save</span> Save</button>
+                    <button id="btn-layout" title="Toggle Layout"><span class="material-symbols-outlined">splitscreen</span> Layout</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="split-pane">
+            <div id="editor-container">
+                <div class="watermark">Abarin</div>
+            </div>
+            
+            <div id="terminal-container">
+                <div class="terminal-header">
+                    <span>Terminal</span>
+                    <button id="btn-clear-term" title="Clear Output"><span class="material-symbols-outlined">backspace</span></button>
+                </div>
+                <div id="terminal-output">
+                    <span class="sys-msg">Initializing Abarin session... connecting to execution engine...</span>
+                </div>
+                <div class="command-line">
+                    <span class="prompt">~ abarin </span>
+                    <input type="text" id="command-input" autocomplete="off" spellcheck="false" placeholder="Type a command (:run, :save, :clear, :layout) or hit enter">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <span class="status-msg">Session is temporary. Executing securely via Piston API.</span>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
