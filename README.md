@@ -1,5 +1,3 @@
-    # Abarin
-
 Abarin is a lightweight, clean, and fast web-based code editor. It is designed to provide a minimal, distraction-free environment for writing and running code directly in your browser.
 
 ![Abarin Screenshot](./screenshot.png)
